@@ -5,7 +5,7 @@
 系统版本 `kali-linux-2022.4-vmware-amd64`
 
 ``` bash
-wget -N --no-check-certificate https://raw.githubusercontent.com/5ime/auto_env/master/auto.sh && chmod +x auto.sh && bash demo.sh
+wget -N --no-check-certificate https://raw.githubusercontent.com/5ime/auto_env/master/auto.sh && chmod +x auto.sh && bash auto.sh
 ```
 
 - 更换 apt 源
