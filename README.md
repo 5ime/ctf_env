@@ -22,4 +22,5 @@ wget -N --no-check-certificate https://raw.githubusercontent.com/5ime/auto_env/m
 - 安装 Pwntools
 - 安装 pycrypto
 - 安装 gmpy2
+- 安装 dirsearch
 - 安装 Ciphey

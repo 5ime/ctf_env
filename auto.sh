@@ -2,6 +2,7 @@
 
 # start ssh
 systemctl start ssh
+update-rc.d ssh enable
 echo -e "\033[32m SSH is running \033[0m"
 sleep 3
 
