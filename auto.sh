@@ -64,11 +64,7 @@ fi
 
 cat > /etc/docker/daemon.json <<-'EOF'
 {
-    "registry-mirrors":
-    [
-        "https://hub-mirror.c.163.com/",
-        "https://docker.mirrors.ustc.edu.cn/"
-    ]
+  "registry-mirrors": ["https://yxzrazem.mirror.aliyuncs.com"]
 }
 EOF
 
