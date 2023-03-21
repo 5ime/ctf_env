@@ -1,5 +1,5 @@
 #!/bin/bash
-
+set +e
 # start ssh
 systemctl start ssh
 update-rc.d ssh enable
@@ -103,88 +103,61 @@ docker run -it --rm remnux/ciphey
 
 clear
 # verify
+not_installed=""
+installed=""
 
-python2 -m pip -V
+declare -a software=("pip2" "docker" "docker-compose" "zsteg" "steghide" "dirsearch")
 
-if [ $? -eq 0 ]; then
-    echo -e "\033[32m python2 pip is installed \033[0m"
+for i in "${software[@]}"
+do
+    which $i
+    if [ $? -eq 0 ]; then
+        installed+="$i\n"
+    else
+        not_installed+="$i\n"
+    fi
+done
+
+if python2 -c "import pwn" &>/dev/null && python3 -c "import pwn" &>/dev/null; then
+    installed+="pwntools\n"
 else
-    # 输出黄色字体
-    echo -e "\033[36m python2 pip is not installed \033[0m"
-fi
-
-docker -v && docker-compose -v
-
-if [ $? -eq 0 ]; then
-    echo -e "\033[32m docker and docker-compose is installed \033[0m"
-else
-    echo -e "\033[36m docker and docker-compose is not installed \033[0m"
-fi
-
-echo 'import pwn' > test.py && python2 test.py && python3 test.py && rm test.py
-
-if [ $? -eq 0 ]; then
-    echo -e "\033[32m pwntools is installed \033[0m"
-else
-    echo -e "\033[36m pwntools is not installed \033[0m"
+    not_installed+="pwntools\n"
 fi
 
 if [ -d "/usr/share/wordlists/Fuzzing" ]; then
-    echo -e "\033[32m SecLists is installed \033[0m"
+    installed+="SecLists\n"
 else
-    echo -e "\033[36m SecLists is not installed \033[0m"
+    not_installed+="SecLists\n"
 fi
 
 if [ -f "/usr/share/wordlists/rockyou.txt" ]; then
-    echo -e "\033[32m rockyou is unzipped \033[0m"
+    installed+="rockyou\n"
 else
-    echo -e "\033[36m rockyou is not unzipped \033[0m"
+    not_installed+="rockyou\n"
 fi
 
-which zsteg
-
-if [ $? -eq 0 ]; then
-    echo -e "\033[32m zsteg is installed \033[0m"
+if python3 -c "import Crypto" &>/dev/null; then
+    installed+="pycrypto\n"
 else
-    echo -e "\033[36m zsteg is not installed \033[0m"
+    not_installed+="pycrypto\n"
 fi
 
-which steghide
-
-if [ $? -eq 0 ]; then
-    echo -e "\033[32m steghide is installed \033[0m"
+if python3 -c "import gmpy2" &>/dev/null; then
+    installed+="gmpy2\n"
 else
-    echo -e "\033[36m steghide is not installed \033[0m"
-fi
-
-echo 'import Crypto' > test.py && && python3 test.py && rm test.py
-
-if [ $? -eq 0 ]; then
-    echo -e "\033[32m pycrypto is installed \033[0m"
-else
-    echo -e "\033[36m pycrypto is not installed \033[0m"
-fi
-
-echo 'import gmpy2' > test.py && python3 test.py && rm test.py
-
-if [ $? -eq 0 ]; then
-    echo -e "\033[32m gmpy2 is installed \033[0m"
-else
-    echo -e "\033[36m gmpy2 is not installed \033[0m"
-fi
-
-which dirsearch
-
-if [ $? -eq 0 ]; then
-    echo -e "\033[32m dirsearch is installed \033[0m"
-else
-    echo -e "\033[36m dirsearch is not installed \033[0m"
+    not_installed+="gmpy2\n"
 fi
 
 docker images | grep remnux/ciphey
 
 if [ $? -eq 0 ]; then
-    echo -e "\033[32m Ciphey is installed \033[0m"
+    installed+="Ciphey\n"
 else
-    echo -e "\033[36m Ciphey is not installed \033[0m"
+    not_installed+="Ciphey\n"
 fi
+
+clear
+echo -e "\033[32m installed: \033[0m"
+echo -e $installed
+echo -e "\033[36m not installed: \033[0m"
+echo -e $not_installed
