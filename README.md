@@ -24,3 +24,4 @@ wget -N --no-check-certificate https://raw.githubusercontent.com/5ime/auto_env/m
 - 安装 gmpy2
 - 安装 dirsearch
 - 安装 Ciphey
+- 安装 stegseek

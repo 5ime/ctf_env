@@ -64,7 +64,13 @@ fi
 
 cat > /etc/docker/daemon.json <<-'EOF'
 {
-  "registry-mirrors": ["https://yxzrazem.mirror.aliyuncs.com"]
+    "registry-mirrors" : [
+    "https://registry.docker-cn.com",
+    "http://hub-mirror.c.163.com",
+    "https://docker.mirrors.ustc.edu.cn",
+    "https://cr.console.aliyun.com",
+    "https://mirror.ccs.tencentyun.com"
+  ]
 }
 EOF
 
@@ -101,12 +107,15 @@ apt install dirsearch -y
 # Ciphey
 docker run -it --rm remnux/ciphey
 
+# Stegseek
+wget https://github.com/RickdeJager/stegseek/releases/download/v0.6/stegseek_0.6-1.deb && dpkg -i stegseek_0.6-1.deb && rm stegseek_0.6-1.deb
+
 clear
 # verify
 not_installed=""
 installed=""
 
-declare -a software=("pip2" "docker" "docker-compose" "zsteg" "steghide" "dirsearch")
+declare -a software=("pip2" "docker" "docker-compose" "zsteg" "steghide" "dirsearch" "stegseek")
 
 for i in "${software[@]}"
 do
