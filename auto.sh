@@ -110,12 +110,15 @@ docker run -it --rm remnux/ciphey
 # Stegseek
 wget https://github.com/RickdeJager/stegseek/releases/download/v0.6/stegseek_0.6-1.deb && dpkg -i stegseek_0.6-1.deb && rm stegseek_0.6-1.deb
 
+# outguess
+apt install outguess -y
+
 clear
 # verify
 not_installed=""
 installed=""
 
-declare -a software=("pip2" "docker" "docker-compose" "zsteg" "steghide" "dirsearch" "stegseek")
+declare -a software=("pip2" "docker" "docker-compose" "zsteg" "steghide" "dirsearch" "stegseek" "outguess")
 
 for i in "${software[@]}"
 do
