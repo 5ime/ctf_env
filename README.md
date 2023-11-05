@@ -5,7 +5,7 @@
 系统版本 `kali-linux-2022.4-vmware-amd64`
 
 ``` bash
-wget -N --no-check-certificate https://raw.githubusercontent.com/5ime/ctf_env/master/auto.sh && chmod +x auto.sh && bash auto.sh
+wget -N --no-check-certificate https://raw.githubusercontent.com/5ime/ctf_env/master/auto.sh && chmod +x auto.sh && sudo bash auto.sh
 ```
 
 - 更换 apt 源
@@ -26,3 +26,4 @@ wget -N --no-check-certificate https://raw.githubusercontent.com/5ime/ctf_env/ma
 - 安装 Ciphey
 - 安装 stegseek
 - 安装 outguess
+- 安装 crackle

@@ -9,8 +9,8 @@ sleep 3
 # apt source
 mv /etc/apt/sources.list /etc/apt/sources.list.bak
 cat > /etc/apt/sources.list << EOF
-deb http://mirrors.ustc.edu.cn/kali kali-rolling main non-free contrib
-deb-src http://mirrors.ustc.edu.cn/kali kali-rolling main non-free contrib
+deb http://mirrors.aliyun.com/kali kali-rolling main non-free contrib
+deb-src http://mirrors.aliyun.com/kali kali-rolling main non-free contrib
 EOF
 
 # apt update and upgrade
@@ -113,12 +113,15 @@ wget https://github.com/RickdeJager/stegseek/releases/download/v0.6/stegseek_0.6
 # outguess
 apt install outguess -y
 
+# crackle
+git clone https://github.com/mikeryan/crackle.git && cd crackle && make && make install && cd .. && rm -rf crackle
+
 clear
 # verify
 not_installed=""
 installed=""
 
-declare -a software=("pip2" "docker" "docker-compose" "zsteg" "steghide" "dirsearch" "stegseek" "outguess")
+declare -a software=("pip2" "docker" "docker-compose" "zsteg" "steghide" "dirsearch" "stegseek" "outguess" "crackle")
 
 for i in "${software[@]}"
 do
