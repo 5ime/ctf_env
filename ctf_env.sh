@@ -113,11 +113,7 @@ installDocker() {
     cat <<EOF > /etc/docker/daemon.json
 {
     "registry-mirrors": [
-        "https://registry.docker-cn.com",
-        "http://hub-mirror.c.163.com",
-        "https://docker.mirrors.ustc.edu.cn",
-        "https://cr.console.aliyun.com",
-        "https://mirror.ccs.tencentyun.com"
+        "https://docker.1ms.run"
     ]
 }
 EOF
